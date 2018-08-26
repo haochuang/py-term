@@ -1,4 +1,5 @@
-# py-term
+# py-term   Python在终端中写一首七彩的诗
+
 Python module to style terminal output, moving and positioning the cursor.
 
 **Python 2 and 3 compatible**
@@ -254,6 +255,78 @@ Clear line from begin to current cursor position.
 ```
 term.clearLineToPos()
 ```
+
+## 说迷宫
+peom.py这个脚本每运行一次，就会输出一次《上邪》这首诗。但是每次运行，输出的效果都会变化。每行文字的颜色会变化，样式也会变化。
+
+让Python能够轻易地在终端中写出多彩文字的，就是py-term这个库了。
+
+项目地址
+
+https://github.com/gravmatt/py-term
+
+
+## 库的安装
+```
+pip install py-term
+```
+
+## 库的使用
+
+在终端中输出不换行的文字
+```
+term.write('Hello, ')
+```
+
+在终端中输出换行的文字
+
+```
+term.writeLine('Hello')
+```
+
+输出绿色的文字
+
+```
+term.writeLine('This text line will be green', term.green)
+```
+
+输出绿色并且反色的文字
+
+```
+term.writeLine('Reverse the green color', term.green, term.reverse)
+```
+
+输出居中的文字
+
+```
+term.writeLine(term.center('Super Python!'))
+```
+
+还有很多其他的特效，比如高亮、移动光标等，有兴趣的同学可以去围观一下。
+
+最后，奉上peom.py的源代码
+
+peom = '''
+上邪！ 
+我欲与君相知， 
+长命无绝衰！ 
+山无陵， 
+江水为竭， 
+冬雷阵阵， 
+夏雨雪， 
+天地合， 
+乃敢与君绝。
+'''
+
+```
+import term
+import random
+
+for line in peom.split("\n"):
+    colors = [term.red, term.green, term.yellow, term.blue]
+    mode = [term.bold, term.dim, term.underscore, term.blink, term.reverse]
+    term.writeLine(line.strip(), random.choice(colors), random.choice(mode))
+```    
 
 ## Licence
 
